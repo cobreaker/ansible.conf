@@ -12,8 +12,8 @@
   # - name: disable lighttpd
   #   systemd: name=lighttpd state=stopped enabled=no  # To avoid conflicts with nginx
   - name: install packages
-    apt: name={{item}} state=installed
-    with_items:
+    ansible.builtin.apt:
+      pkg:
       - tree         # Optional
       - python-pip   # Optional
       - python-dev   # Optional
@@ -36,7 +36,7 @@
     pip:
       requirements: /home/ec2-user/Flask-web/requirements.txt
       virtualenv: /home/ec2-user/Flask-web/env
-      virtualenv_python: python3
+      virtualenv_python: python3.5
 
 # Configure app systemd service and nginx
 - hosts: localhost #webservers
