@@ -1,13 +1,12 @@
 [Unit]
 Description=Gunicorn instance to serve Flask-web
 After=network.target
-
+After=multi-user.target
 [Service]
-User=ec2-user
-Group=www-data
-WorkingDirectory=/home/ec2-user/Flask-web
-Environment="PATH=/home/ec2-user/Flask-web/env/bin"
-ExecStart=/home/ec2-user/Flask-web/env/bin/gunicorn --bind 0.0.0.0:5000 wsgi:app
+User=ubuntu
+WorkingDirectory=/home/ubuntu/Flask-web
+Environment="PATH=/home/ubuntu/Flask-web/env/bin"
+ExecStart=/home/ubuntu/Flask-web/env/bin/gunicorn --bind 0.0.0.0:5000 wsgi:app
 
 [Install]
 WantedBy=multi-user.target

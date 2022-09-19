@@ -9,8 +9,6 @@
   tasks:
   - name: update cache
     apt: update_cache=yes force_apt_get=yes cache_valid_time=43200
-  # - name: disable lighttpd
-  #   systemd: name=lighttpd state=stopped enabled=no  # To avoid conflicts with nginx
   - name: install packages
     ansible.builtin.apt:
       pkg:
@@ -29,12 +27,12 @@
   - name: clone repo
     git:
       repo: 'https://github.com/cobreaker/Flask-app.git'
-      dest: /home/ec2-user/Flask-web
+      dest: /home/ubuntu/Flask-web
       update: yes  # Does a git pull if the repo already exists
   - name: install modules in a virtualenv
     pip:
-      requirements: /home/ec2-user/Flask-web/requirements.txt
-      virtualenv: /home/ec2-user/Flask-web/env
+      requirements: /home/ubuntu/Flask-web/requirements.txt
+      virtualenv: /home/ubuntu/Flask-web/env
       virtualenv_python: python3
 
 # Configure app systemd service and nginx
