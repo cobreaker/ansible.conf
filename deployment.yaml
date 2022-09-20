@@ -7,8 +7,8 @@
   become: yes
   become_user: root
   tasks:
-  - name: update cache
-    apt: update_cache=yes force_apt_get=yes cache_valid_time=43200
+  #- name: update cache
+   # apt: update_cache=yes force_apt_get=yes cache_valid_time=43200
   - name: install packages
     ansible.builtin.apt:
       pkg:
