@@ -2,8 +2,8 @@
 
 ---
 # Install system apt packages
-- hosts: localhost #webservers
-  connection: local
+- hosts: webservers
+  #connection: local
   become: yes
   become_user: root
   tasks:
@@ -19,8 +19,8 @@
       - virtualenv
 
 # Install the app, note: don't do these tasks with become sudo
-- hosts: localhost #webservers
-  connection: local
+- hosts: webservers
+  #connection: local
   become: yes 
   become_user: root
   tasks:
@@ -36,8 +36,8 @@
       virtualenv_python: python3
 
 # Configure app systemd service and nginx
-- hosts: localhost #webservers
-  connection: local
+- hosts: webservers
+  #connection: local
   become: yes
   become_user: root
   tasks:
@@ -68,8 +68,8 @@
       name: Nginx Full
 
 # Run a quick test to verify the site is working
-- hosts: localhost #webservers
-  connection: local
+- hosts: webservers
+  #connection: local
   tasks:
   - name: get url
     get_url:
